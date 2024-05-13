@@ -1,0 +1,88 @@
+/*
+Theme Name: Fleurs d'oranger &amp; Chats errants Child
+Theme URI: http://underscores.me/
+Template: foce
+Author: MyCustomWP
+Author URI: http://underscores.me/
+Description: Thème du film d'animation Fleurs d'orangers et charts errants du studio Koukaki
+Tags: custom-background,custom-logo,custom-menu,featured-images,threaded-comments,translation-ready
+Version: 1.0.0.1715170625
+Updated: 2024-05-08 12:17:05
+
+*/
+
+/* Appliquer une opacité initiale de 0 à toutes les sections */
+section {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Lorsque la section est visible dans la fenêtre d'affichage, changer l'opacité à 1 */
+section.fade-in {
+    opacity: 1;
+}
+
+.story__article::after {
+    animation: rotate 20s linear infinite !important;
+    /* 5s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.story h2::after {
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+#studio h2::before {
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+#studio h2::after {
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+.site-footer::before {
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+.site-footer::after {
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+#bgVideo {
+    position: absolute;
+    width: 1440px;
+    height: 809px;
+    object-fit: cover;
+    /* Ajuste la taille de la vidéo pour couvrir toute la bannière */
+    z-index: 0;
+    /* Place la vidéo en arrière-plan par rapport aux autres éléments */
+}
+
+#logo {
+    position: relative;
+    z-index: 1;
+    transition: transform 1s ease-in-out;
+    /* Transition de 2 secondes pour un mouvement fluide */
+    /* Ajoute une transition pour un mouvement fluide */
+}
+
+.banner {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    /* Ajustez la hauteur selon vos préférences */
+}
