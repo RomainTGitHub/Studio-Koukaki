@@ -64,25 +64,71 @@ section.fade-in {
 
 #bgVideo {
     position: absolute;
-    width: 1440px;
-    height: 809px;
+    width: 100%;
+    height: auto;
     object-fit: cover;
-    /* Ajuste la taille de la vidéo pour couvrir toute la bannière */
     z-index: 0;
-    /* Place la vidéo en arrière-plan par rapport aux autres éléments */
+    /* Assurez-vous que la vidéo est en arrière-plan */
 }
 
 #logo {
-    position: relative;
-    z-index: 1;
+    position: absolute;
     transition: transform 1s ease-in-out;
-    /* Transition de 2 secondes pour un mouvement fluide */
-    /* Ajoute une transition pour un mouvement fluide */
+    /* Transition de 1 seconde pour un mouvement fluide */
+    z-index: 1;
+    /* Assurez-vous que le logo est au-dessus de la vidéo */
 }
+
 
 .banner {
     position: relative;
     overflow: hidden;
     height: 500px;
-    /* Ajustez la hauteur selon vos préférences */
+}
+
+.parallax {
+    transform: translateY(var(--parallax-translate-y, 0));
+}
+
+.float-animation {
+    animation: float 1s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(10px, 10px);
+    }
+}
+
+#oscars {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#oscars h3 {
+    width: 810px;
+    height: 187px;
+    flex-shrink: 0;
+    text-align: left;
+    color: #FFF5E9;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Quicksand;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.84px;
+    background-image: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/orange_place_bg.png ) !important;
+}
+
+#oscars img {
+    max-width: 279px;
+    height: auto;
 }

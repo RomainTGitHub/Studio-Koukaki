@@ -32,10 +32,9 @@ setInterval(flottementAleatoire, 1000); // Déclencher la fonction toutes les 10
 
 window.addEventListener('scroll', function () {
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var parallaxValue = scrollTop * 1; // Ajustez le coefficient de parallaxe selon vos préférences
     var logo = document.getElementById('logo');
 
-    // Appliquer le déplacement parallaxe au logo
-    logo.style.transform = 'translateY(' + parallaxValue + 'px)';
+    // Appliquer l'effet de parallaxe au logo en ajustant sa position verticale
+    logo.style.top = 35 + scrollTop * 0.1 + '%';
 });
 
