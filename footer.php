@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying the footer
  *
@@ -11,16 +12,17 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-        <ul>
-            <li><a href="#">Mentions Légales</a></li>
-            <li><a href="#">STUDIO KOUKAKI</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-	</footer><!-- #colophon -->
+<footer id="colophon" class="site-footer">
+    <ul>
+        <li><a href="#">Mentions Légales</a></li>
+        <li><a href="#">STUDIO KOUKAKI</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</footer><!-- #colophon -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
 
 </body>
+
 </html>

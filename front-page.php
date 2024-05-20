@@ -28,35 +28,36 @@ get_header();
         $characters_query = new WP_Query($args);
         ?>
         <article id="characters">
+            <h3>Les personnages</h3>
             <div class="main-character">
-                <h3>Les personnages</h3>
-                <?php
-                $main_character = $characters_query->posts[0];
-                echo '<figure>';
-                echo get_the_post_thumbnail($main_character->ID, 'full');
-                echo '<figcaption>' . $main_character->post_title . '</figcaption>';
-                echo '</figure>';
-                $characters_query->next_post();
-                ?>
-            </div>
-            <div class="other-characters">
-                <?php
-                while ($characters_query->have_posts()) {
-                    $characters_query->the_post();
-                    echo '<figure>';
-                    echo get_the_post_thumbnail(get_the_ID(), 'full');
-                    echo '<figcaption>';
-                    the_title();
-                    echo '</figcaption>';
-                    echo '</figure>';
-                }
-                ?>
+                <div class="swiper-wrapper">
+                    <?php
+                    // Tri des posts par leur index dans le tableau
+                    usort($characters_query->posts, function ($a, $b) {
+                        return $a->menu_order - $b->menu_order;
+                    });
+
+                    // Affichage des slides dans l'ordre trié
+                    foreach ($characters_query->posts as $character) {
+                        echo '<div class="swiper-slide">';
+                        echo '<figure>';
+                        echo get_the_post_thumbnail($character->ID, 'full');
+                        echo '<figcaption>' . $character->post_title . '</figcaption>';
+                        echo '</figure>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
             </div>
         </article>
         <article id="place">
             <div>
                 <h3>Le Lieu</h3>
                 <p><?php echo get_theme_mod('place'); ?></p>
+                <div class="nuages">
+                    <img id="nuage1" class="nuage" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/big_cloud.png" alt="gros nuage">
+                    <img id="nuage2" class="nuage" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/little_cloud.png" alt="petit nuage">
+                </div>
             </div>
 
         </article>
@@ -75,6 +76,7 @@ get_header();
         <h3>Fleurs d’oranger & chats errants est nominé aux Oscars Short Film Animated de 2022 !</h3>
         <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars.png">
     </section>
+
 
 </main><!-- #main -->
 

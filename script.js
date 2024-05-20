@@ -38,3 +38,74 @@ window.addEventListener('scroll', function () {
     logo.style.top = 35 + scrollTop * 0.1 + '%';
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.main-character', {
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop: true,
+        loopedSlides: 2,
+        spaceBetween: 20,
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menu-toggle');
+    const fullscreenMenu = document.getElementById('fullscreen-menu');
+
+    menuToggle.addEventListener('click', function () {
+        this.classList.toggle('open'); // Ajoute ou supprime la classe 'open' sur le bouton hamburger
+        fullscreenMenu.classList.toggle('show'); // Ajoute ou supprime la classe 'show'
+
+        // Ajoute la classe 'open' au menu en plein écran après un court délai
+        setTimeout(() => {
+            fullscreenMenu.classList.toggle('open');
+        }, 50); // Retard pour permettre à la transition CSS de s'appliquer correctement
+    });
+});
+
+const placeSection = document.getElementById('place');
+const nuage1 = document.getElementById('nuage1');
+const nuage2 = document.getElementById('nuage2');
+
+let lastScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            window.addEventListener('scroll', moveNuagesOnScroll);
+        } else {
+            window.removeEventListener('scroll', moveNuagesOnScroll);
+            resetNuagesPosition();
+        }
+    });
+}, options);
+
+observer.observe(placeSection);
+
+function moveNuagesOnScroll() {
+    const currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScrollPos > lastScrollPos) {
+        moveNuages(300); // Move to the right
+    } else {
+        moveNuages(0); // Move back to the original position
+    }
+    lastScrollPos = currentScrollPos;
+}
+
+function moveNuages(leftPos) {
+    nuage1.style.transform = `translateX(${leftPos}px)`;
+    nuage2.style.transform = `translateX(${leftPos}px)`;
+}
+
+function resetNuagesPosition() {
+    nuage1.style.transform = 'translateX(0)';
+    nuage2.style.transform = 'translateX(0)';
+}
+
