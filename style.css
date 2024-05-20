@@ -110,6 +110,7 @@ section.fade-in {
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 100px;
 }
 
 #oscars h3 {
@@ -125,7 +126,7 @@ section.fade-in {
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.84px;
-    background-image: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/orange_place_bg.png ) !important;
+    background-image: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars_bg.png ) !important;
 }
 
 #oscars img {
