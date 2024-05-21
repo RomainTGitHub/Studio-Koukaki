@@ -52,60 +52,101 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const fullscreenMenu = document.getElementById('fullscreen-menu');
+    const menuItems = document.querySelectorAll('#fullscreen-menu ul li a');
 
     menuToggle.addEventListener('click', function () {
-        this.classList.toggle('open'); // Ajoute ou supprime la classe 'open' sur le bouton hamburger
-        fullscreenMenu.classList.toggle('show'); // Ajoute ou supprime la classe 'show'
+        // Ajoute ou supprime la classe 'open' sur le bouton hamburger
+        this.classList.toggle('open');
+
+        // Ajoute ou supprime la classe 'cross' pour transformer le bouton hamburger en croix
+        if (this.classList.contains('open')) {
+            this.classList.add('cross');
+        } else {
+            this.classList.remove('cross');
+        }
+
+        // Ajoute ou supprime la classe 'show' sur le menu fullscreen
+        fullscreenMenu.classList.toggle('show');
 
         // Ajoute la classe 'open' au menu en plein écran après un court délai
         setTimeout(() => {
             fullscreenMenu.classList.toggle('open');
+            if (fullscreenMenu.classList.contains('open')) {
+                // Ajoutez la classe spécifique aux éléments du menu lorsque le menu est ouvert
+                menuItems.forEach(item => {
+                    item.classList.add('animate');
+                });
+            } else {
+                // Retirez la classe spécifique lorsque le menu est fermé
+                menuItems.forEach(item => {
+                    item.classList.remove('animate');
+                });
+            }
         }, 50); // Retard pour permettre à la transition CSS de s'appliquer correctement
     });
 });
 
-const placeSection = document.getElementById('place');
-const nuage1 = document.getElementById('nuage1');
-const nuage2 = document.getElementById('nuage2');
 
-let lastScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+// Sélectionnez tous les éléments span avec la classe 'appear'
+const spanElements = document.querySelectorAll('span');
 
-const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5
+// Options pour l'observateur d'intersection
+const optionsForSpan = {
+    root: null, // Utilisez la fenêtre comme zone d'affichage
+    rootMargin: '0px', // Aucune marge supplémentaire
+    threshold: 0.5 // Déclencher lorsque 50% de l'élément est visible
 };
 
-const observer = new IntersectionObserver((entries, observer) => {
+// Créez un observateur d'intersection avec la fonction de rappel
+const observerForSpan = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            window.addEventListener('scroll', moveNuagesOnScroll);
-        } else {
-            window.removeEventListener('scroll', moveNuagesOnScroll);
-            resetNuagesPosition();
+            // Ajoutez la classe avec un délai de 500ms
+            setTimeout(() => {
+                entry.target.classList.add('animate');
+            }, 500);
+            // Arrêtez d'observer l'élément après l'avoir animé
+            observer.unobserve(entry.target);
         }
     });
-}, options);
+}, optionsForSpan);
 
-observer.observe(placeSection);
+// Parcourez chaque élément span et observez-le
+spanElements.forEach(span => {
+    observerForSpan.observe(span);
+});
 
-function moveNuagesOnScroll() {
-    const currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
-    if (currentScrollPos > lastScrollPos) {
-        moveNuages(300); // Move to the right
-    } else {
-        moveNuages(0); // Move back to the original position
-    }
-    lastScrollPos = currentScrollPos;
-}
+// Sélectionnez les éléments avec la classe "nuage"
+const nuages = document.querySelectorAll('.nuage');
 
-function moveNuages(leftPos) {
-    nuage1.style.transform = `translateX(${leftPos}px)`;
-    nuage2.style.transform = `translateX(${leftPos}px)`;
-}
+// Options pour l'observateur d'intersection des nuages
+const optionsForNuages = {
+    root: null, // Utilisez la fenêtre comme zone d'affichage
+    rootMargin: '0px', // Aucune marge supplémentaire
+    threshold: 0.5 // Déclencher lorsque 50% de l'élément est visible
+};
 
-function resetNuagesPosition() {
-    nuage1.style.transform = 'translateX(0)';
-    nuage2.style.transform = 'translateX(0)';
-}
+// Créez un observateur d'intersection avec la fonction de rappel
+const observerForNuages = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Ajoutez la classe pour déclencher l'animation
+            nuages.forEach(nuage => {
+                const animationDuration = (entry.intersectionRatio * nuage.offsetWidth) / 50; // Calcul de la durée de l'animation en secondes
+                nuage.style.transitionDuration = animationDuration + 's'; // Appliquer la durée de l'animation
+                nuage.classList.add('move-left');
+
+                // Réinitialiser la durée de transition après l'animation
+                setTimeout(() => {
+                    nuage.style.transitionDuration = '';
+                }, animationDuration * 1000); // Convertir la durée de l'animation en millisecondes
+            });
+        }
+    });
+}, optionsForNuages);
+
+// Observez chaque élément avec la classe "nuage"
+nuages.forEach(nuage => {
+    observerForNuages.observe(nuage);
+});
 

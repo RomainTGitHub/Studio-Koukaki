@@ -53,11 +53,30 @@ section.fade-in {
 }
 
 .site-footer::before {
+    display: none;
+}
+
+.site-footer::after {
+    display: none;
+}
+
+.site-footer ul::after {
     animation: rotate 20s linear infinite !important;
     /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
-.site-footer::after {
+.oscars::before {
+    content: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Sunflower.png);
+    margin-bottom: 200px;
+    margin-left: 100px;
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+.oscars::after {
+    content: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/orchid.png);
+    margin-bottom: 300px;
+    margin-left: 200px;
     animation: rotate 20s linear infinite !important;
     /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
@@ -65,12 +84,23 @@ section.fade-in {
 
 #bgVideo {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    transform: translate(-50%, -50%);
     z-index: 0;
-    /* Assurez-vous que la vidéo est en arrière-plan */
+    /* Make sure the video is behind the content */
 }
+
+@media (max-width: 600px) {
+    #bgVideo {
+        object-fit: contain;
+        /* Adjust the object-fit property if necessary */
+    }
+}
+
 
 #logo {
     position: absolute;
@@ -84,9 +114,9 @@ section.fade-in {
 .banner {
     position: relative;
     overflow: hidden;
-    height: 500px;
-    width: auto;
-    margin-top: 73px;
+    height: 100vh;
+    width: 100%;
+    margin-top: 72px;
 }
 
 .parallax {
@@ -113,13 +143,13 @@ section.fade-in {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 100px;
 }
 
 #oscars h3 {
     width: 810px;
-    height: 187px;
+    /* Largeur actuelle du titre */
     flex-shrink: 0;
+    /* Empêcher le titre de rétrécir */
     text-align: left;
     color: #FFF5E9;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -130,7 +160,18 @@ section.fade-in {
     line-height: normal;
     letter-spacing: -0.84px;
     background-image: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars_bg.png ) !important;
+    background-size: contain;
+    /* Ajuster la taille de l'image pour qu'elle soit entièrement visible sans déformation */
+    background-repeat: no-repeat;
+    /* Empêcher l'image de fond de se répéter */
+    background-position: center;
+    /* Centrer l'image de fond */
+    padding: 20px 30px;
+    /* Ajouter un padding pour augmenter l'espace entre le texte et le bord du conteneur */
+    box-sizing: border-box;
+    /* Inclure le padding dans la largeur totale du titre */
 }
+
 
 #oscars img {
     max-width: 279px;
@@ -198,8 +239,15 @@ section.fade-in {
     right: 20px;
     z-index: 1000;
     cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 10000;
+    /* Assurez-vous que le bouton hamburger est au-dessus du contenu */
+    margin-top: 30px;
+    margin-right: 200px;
 }
 
+/* Styles pour les lignes du bouton hamburger */
 .line {
     display: block;
     width: 25px;
@@ -209,17 +257,20 @@ section.fade-in {
     transition: transform 0.3s ease-in-out;
 }
 
-.open .line:nth-child(1) {
+/* Transformation en croix lorsque la classe 'cross' est présente sur le bouton hamburger */
+.menu-toggle.cross .line:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
 
-.open .line:nth-child(2) {
+.menu-toggle.cross .line:nth-child(2) {
     opacity: 0;
 }
 
-.open .line:nth-child(3) {
+.menu-toggle.cross .line:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
+
+
 
 #fullscreen-menu {
     position: fixed;
@@ -284,11 +335,22 @@ section.fade-in {
     line-height: normal;
     visibility: hidden;
     /* Masquer les liens */
+    transition: transform 0.5s ease;
+    transform: translateY(100%);
+    opacity: 0;
+    transition-delay: 0.1s;
+    /* Ajoutez un délai de 0.1s */
+}
+
+#fullscreen-menu ul li a:hover {
+    text-shadow: 0px 0px 14px #FF5C00;
 }
 
 #fullscreen-menu.open ul li a {
     visibility: visible;
     /* Rendre les liens visibles lorsque le menu est ouvert */
+    transform: translateY(0);
+    opacity: 1;
 }
 
 #fullscreen-menu #footer-fullscreenmenu {
@@ -307,17 +369,67 @@ section.fade-in {
     visibility: visible;
 }
 
-/* Styles pour le bouton hamburger */
-.menu-toggle {
-    position: fixed;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 10000;
-    /* Assurez-vous que le bouton hamburger est au-dessus du contenu */
-    margin-top: 30px;
-    margin-right: 200px;
+.flowerfooterfullscreen {
+    position: absolute;
+    bottom: -250px;
+    right: -250px;
+    width: 500px;
+    height: auto;
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
+
+.flower1fullscreenmenu {
+    position: fixed;
+    top: 200px;
+    left: -80px;
+    width: 250px;
+    height: auto;
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+.flower2fullscreenmenu {
+    position: fixed;
+    width: 200px;
+    height: auto;
+    top: 169px;
+    right: 185px;
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+.flower3fullscreenmenu {
+    position: fixed;
+    width: 80px;
+    height: auto;
+    left: 213px;
+    top: 563px;
+    animation: rotate 20s linear infinite !important;
+    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+}
+
+.cat1fullscreenmenu {
+    position: fixed;
+    top: 241px;
+    left: 267px;
+    animation: float 1s ease-in-out infinite alternate;
+}
+
+.cat2fullscreenmenu {
+    position: fixed;
+    top: 550px;
+    right: 205px;
+    animation: float 1s ease-in-out infinite alternate;
+}
+
+.cat3fullscreenmenu {
+    position: fixed;
+    bottom: 100px;
+    left: 79px;
+    animation: float 1s ease-in-out infinite alternate;
+}
+
 
 .site-header {
     position: fixed;
@@ -339,7 +451,12 @@ section.fade-in {
 
 .nuage {
     position: absolute;
-    transition: transform O.5s ease-in-out;
+    transition: transform O.5s ease;
+}
+
+.nuage.move-left {
+    transform: translateX(-300px);
+    /* Déplacement de 300px vers la gauche */
 }
 
 #place {
@@ -372,4 +489,37 @@ section.fade-in {
     left: 780px;
     /* Modifiez la position horizontale selon vos besoins */
     filter: blur(15px);
+}
+
+h2 span {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+h3 span {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+h2 span.animate {
+    animation: slide-up 0.5s ease forwards;
+}
+
+h3 span.animate {
+    animation: slide-up 0.5s ease forwards;
+}
+
+
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

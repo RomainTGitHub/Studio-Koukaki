@@ -13,7 +13,7 @@ get_header();
 
     </section>
     <section id="#story" class="story">
-        <h2>L'histoire</h2>
+        <h2><span>L'histoire</span></h2>
         <article id="" class="story__article">
             <p><?php echo get_theme_mod('story'); ?></p>
         </article>
@@ -28,7 +28,7 @@ get_header();
         $characters_query = new WP_Query($args);
         ?>
         <article id="characters">
-            <h3>Les personnages</h3>
+            <h3><span>Les personnages</span></h3>
             <div class="main-character">
                 <div class="swiper-wrapper">
                     <?php
@@ -52,7 +52,7 @@ get_header();
         </article>
         <article id="place">
             <div>
-                <h3>Le Lieu</h3>
+                <h3><span>Le Lieu</span></h3>
                 <p><?php echo get_theme_mod('place'); ?></p>
                 <div class="nuages">
                     <img id="nuage1" class="nuage" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/big_cloud.png" alt="gros nuage">
@@ -65,7 +65,7 @@ get_header();
 
 
     <section id="studio">
-        <h2>Studio Koukaki</h2>
+        <h2><span>Studio Koukaki</span></h2>
         <div>
             <p>Acteur majeur de l’animation, Koukaki est un studio intégré fondé en 2012 qui créé, produit et distribue des programmes originaux dans plus de 190 pays pour les enfants et les adultes. Nous avons deux sections en activité : le long métrage et le court métrage. Nous développons des films fantastiques, principalement autour de la culture de notre pays natal, le Japon.</p>
             <p>Avec une créativité et une capacité d’innovation mondialement reconnues, une expertise éditoriale et commerciale à la pointe de son industrie, le Studio Koukaki se positionne comme un acteur incontournable dans un marché en forte croissance. Koukaki construit chaque année de véritables succès et capitalise sur de puissantes marques historiques. Cette année, il vous présente “Fleurs d’oranger et chats errants”.</p>
@@ -73,7 +73,7 @@ get_header();
     </section>
 
     <section class="oscars" id="oscars">
-        <h3>Fleurs d’oranger & chats errants est nominé aux Oscars Short Film Animated de 2022 !</h3>
+        <h3><span>Fleurs d’oranger & chats errants est nominé aux Oscars Short Film Animated de 2022 !</span></h3>
         <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars.png">
     </section>
 
