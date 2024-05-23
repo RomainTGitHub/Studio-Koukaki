@@ -1,11 +1,13 @@
+// Lorsque le contenu du DOM est complètement chargé, exécutez la fonction principale
 document.addEventListener('DOMContentLoaded', function () {
+    // Animation de fade-in pour les sections lorsqu'elles sont en vue
     const sections = document.querySelectorAll('section');
 
     function checkScroll() {
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            const threshold = 0.5; // 50% de la section visible
+            const threshold = 0.7; // 70% de la section doit être visible
 
             if (rect.top <= windowHeight * threshold) {
                 section.classList.add('fade-in');
@@ -13,31 +15,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Ajoutez un écouteur d'événement pour vérifier le défilement et exécuter checkScroll
     window.addEventListener('scroll', checkScroll);
-    checkScroll(); // Vérifie si des sections sont déjà visibles lors du chargement de la page
+    checkScroll(); // Vérifie les sections visibles lors du chargement de la page
 });
 
+// Animation flottante aléatoire du logo
 var elementFlottant = document.querySelector('#logo');
 
 function flottementAleatoire() {
-    var deltaX = Math.random() * 20 - 10; // Valeur aléatoire entre -10 et 10 pour le déplacement horizontal
-    var deltaY = Math.random() * 20 - 10; // Valeur aléatoire entre -10 et 10 pour le déplacement vertical
+    var deltaX = Math.random() * 20 - 10; // Déplacement horizontal aléatoire entre -10 et 10 pixels
+    var deltaY = Math.random() * 20 - 10; // Déplacement vertical aléatoire entre -10 et 10 pixels
 
-    // Appliquer le déplacement aléatoire à l'élément
     elementFlottant.style.transform = 'translate(' + deltaX + 'px, ' + deltaY + 'px)';
 }
 
-// Lancer l'effet de flottement léger à intervalles réguliers
-setInterval(flottementAleatoire, 1000); // Déclencher la fonction toutes les 1000 millisecondes (1 secondes)
+// Lancez l'effet de flottement léger à intervalles réguliers (toutes les secondes)
+setInterval(flottementAleatoire, 1000);
 
+// Applique un effet de parallaxe au logo lors du défilement
 window.addEventListener('scroll', function () {
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
     var logo = document.getElementById('logo');
 
-    // Appliquer l'effet de parallaxe au logo en ajustant sa position verticale
+    // Ajuste la position verticale du logo en fonction du défilement
     logo.style.top = 35 + scrollTop * 0.1 + '%';
 });
 
+// Configuration du swiper pour les personnages principaux
 document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.main-character', {
         grabCursor: true,
@@ -49,104 +54,92 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Menu hamburger et animation du menu fullscreen
 document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const fullscreenMenu = document.getElementById('fullscreen-menu');
     const menuItems = document.querySelectorAll('#fullscreen-menu ul li a');
 
     menuToggle.addEventListener('click', function () {
-        // Ajoute ou supprime la classe 'open' sur le bouton hamburger
         this.classList.toggle('open');
 
-        // Ajoute ou supprime la classe 'cross' pour transformer le bouton hamburger en croix
         if (this.classList.contains('open')) {
             this.classList.add('cross');
         } else {
             this.classList.remove('cross');
         }
 
-        // Ajoute ou supprime la classe 'show' sur le menu fullscreen
         fullscreenMenu.classList.toggle('show');
 
-        // Ajoute la classe 'open' au menu en plein écran après un court délai
         setTimeout(() => {
             fullscreenMenu.classList.toggle('open');
             if (fullscreenMenu.classList.contains('open')) {
-                // Ajoutez la classe spécifique aux éléments du menu lorsque le menu est ouvert
                 menuItems.forEach(item => {
                     item.classList.add('animate');
                 });
             } else {
-                // Retirez la classe spécifique lorsque le menu est fermé
                 menuItems.forEach(item => {
                     item.classList.remove('animate');
                 });
             }
-        }, 50); // Retard pour permettre à la transition CSS de s'appliquer correctement
+        }, 50); // Délais pour permettre la transition CSS
     });
 });
 
+// Animation pour les éléments span lorsqu'ils apparaissent dans la vue
+document.addEventListener('DOMContentLoaded', function () {
+    const spanElements = document.querySelectorAll('span');
 
-// Sélectionnez tous les éléments span avec la classe 'appear'
-const spanElements = document.querySelectorAll('span');
+    const optionsForSpan = {
+        root: null, // Utilise la fenêtre comme zone d'affichage
+        rootMargin: '0px', // Pas de marge supplémentaire
+        threshold: 0.5 // Déclenche lorsque 50% de l'élément est visible
+    };
 
-// Options pour l'observateur d'intersection
-const optionsForSpan = {
-    root: null, // Utilisez la fenêtre comme zone d'affichage
-    rootMargin: '0px', // Aucune marge supplémentaire
-    threshold: 0.5 // Déclencher lorsque 50% de l'élément est visible
-};
-
-// Créez un observateur d'intersection avec la fonction de rappel
-const observerForSpan = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Ajoutez la classe avec un délai de 500ms
-            setTimeout(() => {
-                entry.target.classList.add('animate');
-            }, 500);
-            // Arrêtez d'observer l'élément après l'avoir animé
-            observer.unobserve(entry.target);
-        }
-    });
-}, optionsForSpan);
-
-// Parcourez chaque élément span et observez-le
-spanElements.forEach(span => {
-    observerForSpan.observe(span);
-});
-
-// Sélectionnez les éléments avec la classe "nuage"
-const nuages = document.querySelectorAll('.nuage');
-
-// Options pour l'observateur d'intersection des nuages
-const optionsForNuages = {
-    root: null, // Utilisez la fenêtre comme zone d'affichage
-    rootMargin: '0px', // Aucune marge supplémentaire
-    threshold: 0.5 // Déclencher lorsque 50% de l'élément est visible
-};
-
-// Créez un observateur d'intersection avec la fonction de rappel
-const observerForNuages = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Ajoutez la classe pour déclencher l'animation
-            nuages.forEach(nuage => {
-                const animationDuration = (entry.intersectionRatio * nuage.offsetWidth) / 50; // Calcul de la durée de l'animation en secondes
-                nuage.style.transitionDuration = animationDuration + 's'; // Appliquer la durée de l'animation
-                nuage.classList.add('move-left');
-
-                // Réinitialiser la durée de transition après l'animation
+    const observerForSpan = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
                 setTimeout(() => {
-                    nuage.style.transitionDuration = '';
-                }, animationDuration * 1000); // Convertir la durée de l'animation en millisecondes
-            });
-        }
-    });
-}, optionsForNuages);
+                    entry.target.classList.add('animate');
+                }, 500); // Ajoute la classe avec un délai de 500ms
 
-// Observez chaque élément avec la classe "nuage"
-nuages.forEach(nuage => {
-    observerForNuages.observe(nuage);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, optionsForSpan);
+
+    spanElements.forEach(span => {
+        observerForSpan.observe(span);
+    });
 });
 
+// Animation pour les éléments nuages lorsqu'ils apparaissent dans la vue
+document.addEventListener('DOMContentLoaded', function () {
+    const nuages = document.querySelectorAll('.nuage');
+
+    const optionsForNuages = {
+        root: null, // Utilise la fenêtre comme zone d'affichage
+        rootMargin: '0px', // Pas de marge supplémentaire
+        threshold: 0.5 // Déclenche lorsque 50% de l'élément est visible
+    };
+
+    const observerForNuages = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                nuages.forEach(nuage => {
+                    const animationDuration = (entry.intersectionRatio * nuage.offsetWidth) / 50; // Calcul de la durée de l'animation en secondes
+                    nuage.style.transitionDuration = animationDuration + 's'; // Appliquer la durée de l'animation
+                    nuage.classList.add('move-left');
+
+                    setTimeout(() => {
+                        nuage.style.transitionDuration = '';
+                    }, animationDuration * 1000); // Réinitialiser la durée de transition après l'animation
+                });
+            }
+        });
+    }, optionsForNuages);
+
+    nuages.forEach(nuage => {
+        observerForNuages.observe(nuage);
+    });
+});

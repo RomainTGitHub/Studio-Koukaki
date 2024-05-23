@@ -4,11 +4,10 @@ Theme URI: http://underscores.me/
 Template: foce
 Author: MyCustomWP
 Author URI: http://underscores.me/
-Description: Thème du film d'animation Fleurs d'orangers et charts errants du studio Koukaki
+Description: Thème du film d'animation Fleurs d'orangers et chats errants du studio Koukaki
 Tags: custom-background,custom-logo,custom-menu,featured-images,threaded-comments,translation-ready
 Version: 1.0.0.1715170625
 Updated: 2024-05-08 12:17:05
-
 */
 
 /* Appliquer une opacité initiale de 0 à toutes les sections */
@@ -22,11 +21,13 @@ section.fade-in {
     opacity: 1;
 }
 
+/* Animation de rotation appliquée aux éléments après l'article */
 .story__article::after {
     animation: rotate 20s linear infinite !important;
-    /* 5s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
+    /* 20s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
+/* Définition de l'animation de rotation */
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -37,51 +38,45 @@ section.fade-in {
     }
 }
 
+/* Animation de rotation pour les éléments après le h2 de la section .story */
 .story h2::after {
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
-#studio h2::before {
-    animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
-}
-
+/* Animation de rotation pour les éléments avant et après le h2 de la section #studio */
+#studio h2::before,
 #studio h2::after {
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
-.site-footer::before {
-    display: none;
-}
-
+/* Masquer les pseudo-éléments avant et après le pied de page */
+.site-footer::before,
 .site-footer::after {
     display: none;
 }
 
+/* Animation de rotation pour les éléments après les listes non ordonnées du pied de page */
 .site-footer ul::after {
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
+/* Image de tournesol avec animation de rotation pour l'élément avant de la classe .oscars */
 .oscars::before {
     content: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Sunflower.png);
     margin-bottom: 200px;
     margin-left: 100px;
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
+/* Image d'orchidée avec animation de rotation pour l'élément après de la classe .oscars */
 .oscars::after {
     content: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/orchid.png);
     margin-bottom: 300px;
     margin-left: 200px;
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
-
+/* Styles pour la vidéo d'arrière-plan */
 #bgVideo {
     position: absolute;
     top: 50%;
@@ -91,17 +86,17 @@ section.fade-in {
     object-fit: cover;
     transform: translate(-50%, -50%);
     z-index: 0;
-    /* Make sure the video is behind the content */
+    /* Assurez-vous que la vidéo est derrière le contenu */
 }
 
+/* Ajuster l'objet de la vidéo pour les petits écrans */
 @media (max-width: 600px) {
     #bgVideo {
         object-fit: contain;
-        /* Adjust the object-fit property if necessary */
     }
 }
 
-
+/* Styles pour le logo */
 #logo {
     position: absolute;
     transition: transform 1s ease-in-out;
@@ -110,7 +105,7 @@ section.fade-in {
     /* Assurez-vous que le logo est au-dessus de la vidéo */
 }
 
-
+/* Styles pour la bannière */
 .banner {
     position: relative;
     overflow: hidden;
@@ -119,14 +114,17 @@ section.fade-in {
     margin-top: 72px;
 }
 
+/* Styles pour l'effet de parallaxe */
 .parallax {
     transform: translateY(var(--parallax-translate-y, 0));
 }
 
+/* Animation de flottement */
 .float-animation {
     animation: float 1s ease-in-out infinite alternate;
 }
 
+/* Définition de l'animation de flottement */
 @keyframes float {
     from {
         transform: translate(0, 0);
@@ -137,6 +135,7 @@ section.fade-in {
     }
 }
 
+/* Styles pour la section #oscars */
 #oscars {
     display: flex;
     flex-direction: row;
@@ -145,6 +144,7 @@ section.fade-in {
     text-align: center;
 }
 
+/* Styles pour les titres h3 dans la section #oscars */
 #oscars h3 {
     width: 810px;
     /* Largeur actuelle du titre */
@@ -159,7 +159,7 @@ section.fade-in {
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.84px;
-    background-image: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars_bg.png ) !important;
+    background-image: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars_bg.png) !important;
     background-size: contain;
     /* Ajuster la taille de l'image pour qu'elle soit entièrement visible sans déformation */
     background-repeat: no-repeat;
@@ -172,13 +172,13 @@ section.fade-in {
     /* Inclure le padding dans la largeur totale du titre */
 }
 
-
+/* Styles pour les images dans la section #oscars */
 #oscars img {
     max-width: 279px;
     height: auto;
 }
 
-/* Custom styles for the swiper */
+/* Styles personnalisés pour le swiper */
 .main-character {
     width: 100%;
     height: 100%;
@@ -192,9 +192,7 @@ section.fade-in {
     text-align: center;
     font-size: 18px;
     background: rgba(255, 255, 255, 0);
-    /* Transparent background */
-
-    /* Center slide text vertically */
+    /* Fond transparent */
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -215,7 +213,7 @@ section.fade-in {
     height: auto;
 }
 
-/* Styles for the characters section */
+/* Styles pour la section des personnages */
 #characters {
     display: flex;
     flex-direction: column;
@@ -232,6 +230,7 @@ section.fade-in {
     letter-spacing: -0.84px;
 }
 
+/* Styles pour le bouton de menu hamburger */
 .menu-toggle {
     display: block;
     position: fixed;
@@ -270,8 +269,7 @@ section.fade-in {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-
-
+/* Styles pour le menu plein écran */
 #fullscreen-menu {
     position: fixed;
     top: 0;
@@ -287,12 +285,13 @@ section.fade-in {
     visibility: hidden;
 }
 
+/* Affiche le menu plein écran avec un effet de fondu */
 #fullscreen-menu.open {
     opacity: 1;
-    /* Affiche le menu avec un effet de fondu */
     visibility: visible;
 }
 
+/* Styles pour les éléments de la liste du menu plein écran */
 #fullscreen-menu ul {
     display: flex;
     flex-direction: column;
@@ -310,19 +309,23 @@ section.fade-in {
     visibility: hidden;
 }
 
+/* Rendre la liste visible lorsque le menu est ouvert */
 #fullscreen-menu.open ul {
     visibility: visible;
 }
 
+/* Styles pour les éléments de la liste */
 #fullscreen-menu ul li {
     margin-bottom: 20px;
     visibility: hidden;
 }
 
+/* Rendre les éléments de la liste visibles lorsque le menu est ouvert */
 #fullscreen-menu.open ul li {
     visibility: visible;
 }
 
+/* Styles pour les liens dans le menu plein écran */
 #fullscreen-menu ul li a {
     display: block;
     text-decoration: none;
@@ -342,17 +345,19 @@ section.fade-in {
     /* Ajoutez un délai de 0.1s */
 }
 
+/* Ajouter un effet de survol sur les liens */
 #fullscreen-menu ul li a:hover {
     text-shadow: 0px 0px 14px #FF5C00;
 }
 
+/* Rendre les liens visibles lorsque le menu est ouvert */
 #fullscreen-menu.open ul li a {
     visibility: visible;
-    /* Rendre les liens visibles lorsque le menu est ouvert */
     transform: translateY(0);
     opacity: 1;
 }
 
+/* Styles pour le pied de page du menu plein écran */
 #fullscreen-menu #footer-fullscreenmenu {
     position: fixed;
     left: 50%;
@@ -365,10 +370,12 @@ section.fade-in {
     visibility: hidden;
 }
 
+/* Rendre le pied de page visible */
 #fullscreen-menu #footer-fullscreenmenu {
     visibility: visible;
 }
 
+/* Animation de rotation pour l'élément .flowerfooterfullscreen */
 .flowerfooterfullscreen {
     position: absolute;
     bottom: -250px;
@@ -376,9 +383,9 @@ section.fade-in {
     width: 500px;
     height: auto;
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
+/* Animation de rotation pour l'élément .flower1fullscreenmenu */
 .flower1fullscreenmenu {
     position: fixed;
     top: 200px;
@@ -386,9 +393,9 @@ section.fade-in {
     width: 250px;
     height: auto;
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
+/* Animation de rotation pour l'élément .flower2fullscreenmenu */
 .flower2fullscreenmenu {
     position: fixed;
     width: 200px;
@@ -396,9 +403,9 @@ section.fade-in {
     top: 169px;
     right: 185px;
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
+/* Animation de rotation pour l'élément .flower3fullscreenmenu */
 .flower3fullscreenmenu {
     position: fixed;
     width: 80px;
@@ -406,9 +413,9 @@ section.fade-in {
     left: 213px;
     top: 563px;
     animation: rotate 20s linear infinite !important;
-    /* s = Durée de l'animation, linear = Fonction de temporisation, infinite = Répéter indéfiniment */
 }
 
+/* Animation de flottement pour l'élément .cat1fullscreenmenu */
 .cat1fullscreenmenu {
     position: fixed;
     top: 241px;
@@ -416,6 +423,7 @@ section.fade-in {
     animation: float 1s ease-in-out infinite alternate;
 }
 
+/* Animation de flottement pour l'élément .cat2fullscreenmenu */
 .cat2fullscreenmenu {
     position: fixed;
     top: 550px;
@@ -423,6 +431,7 @@ section.fade-in {
     animation: float 1s ease-in-out infinite alternate;
 }
 
+/* Animation de flottement pour l'élément .cat3fullscreenmenu */
 .cat3fullscreenmenu {
     position: fixed;
     bottom: 100px;
@@ -430,7 +439,7 @@ section.fade-in {
     animation: float 1s ease-in-out infinite alternate;
 }
 
-
+/* Styles pour l'en-tête du site */
 .site-header {
     position: fixed;
     top: 0;
@@ -440,30 +449,35 @@ section.fade-in {
     z-index: 1000;
 }
 
+/* Styles pour le logo secondaire */
 #logo2 {
     width: 20%;
     height: auto;
 }
 
+/* Image de fond pour la section .story #place */
 .story #place {
     background-image: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Studio_Koukaki-image_place.png);
 }
 
+/* Styles pour l'élément nuage */
 .nuage {
     position: absolute;
-    transition: transform O.5s ease;
+    transition: transform 0.5s ease;
 }
 
+/* Déplacement de l'élément nuage vers la gauche */
 .nuage.move-left {
     transform: translateX(-300px);
-    /* Déplacement de 300px vers la gauche */
 }
 
+/* Positionnement de la section #place */
 #place {
     position: relative;
     overflow: hidden;
 }
 
+/* Styles pour le conteneur des nuages */
 .nuages {
     position: absolute;
     top: 0;
@@ -473,45 +487,47 @@ section.fade-in {
     overflow: hidden;
 }
 
+/* Positionnement et flou pour le nuage 1 */
 #nuage1.nuage {
     position: absolute;
     top: 70px;
-    /* Modifiez la position verticale selon vos besoins */
     left: 1020px;
-    /* Modifiez la position horizontale selon vos besoins */
     filter: blur(15px);
 }
 
+/* Positionnement et flou pour le nuage 2 */
 #nuage2.nuage {
     position: absolute;
     top: 250px;
-    /* Modifiez la position verticale selon vos besoins */
     left: 780px;
-    /* Modifiez la position horizontale selon vos besoins */
     filter: blur(15px);
 }
 
+/* Styles pour les éléments span dans les titres h2 */
 h2 span {
     display: inline-block;
     transform: translateY(100%);
     opacity: 0;
 }
 
+/* Styles pour les éléments span dans les titres h3 */
 h3 span {
     display: inline-block;
     transform: translateY(100%);
     opacity: 0;
 }
 
+/* Animation de glissement vers le haut pour les éléments span dans les titres h2 */
 h2 span.animate {
     animation: slide-up 0.5s ease forwards;
 }
 
+/* Animation de glissement vers le haut pour les éléments span dans les titres h3 */
 h3 span.animate {
     animation: slide-up 0.5s ease forwards;
 }
 
-
+/* Définition de l'animation de glissement vers le haut */
 @keyframes slide-up {
     from {
         transform: translateY(100%);

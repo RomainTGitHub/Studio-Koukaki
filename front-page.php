@@ -72,11 +72,14 @@ get_header();
         </div>
     </section>
 
+    <!-- Section à supprimer lorsque l'evenement sera terminé! -->
+
     <section class="oscars" id="oscars">
         <h3><span>Fleurs d’oranger & chats errants est nominé aux Oscars Short Film Animated de 2022 !</span></h3>
         <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars.png">
     </section>
 
+    <!-- Fin de la section à supprimer -->
 
 </main><!-- #main -->
 
