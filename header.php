@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="stylesheet" href="style.css">
@@ -89,6 +89,7 @@
             </svg>
             <img class="flower2fullscreenmenu" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Sunflower.png">
             <img class="flower3fullscreenmenu" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/flower.png">
+            <img class="flower4fullscreenmenu" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/random_flower.png">
             <svg class="cat2fullscreenmenu" xmlns="http://www.w3.org/2000/svg" width="155" height="148" viewBox="0 0 155 148" fill="none">
                 <path d="M13.3343 39.2634C10.0369 42.8256 19.8731 73.0204 25.2035 87.6724L54.9574 49.7419C48.3293 37.4251 17.4561 34.8106 13.3343 39.2634Z" fill="#272334" />
                 <path d="M123.89 23.7236C128.099 26.1411 127.71 57.8952 126.989 73.47L87.6694 50.6542C90.325 36.9218 118.441 20.5945 123.89 23.7236Z" fill="#272334" />
@@ -167,7 +168,7 @@
             </svg>
 
             <ul>
-                <img src="<?php echo get_template_directory_uri() . '/assets/images/logo.png'; ?> " alt="logo Fleurs d'oranger & chats errants" id="logo2">
+                <img src="<?php echo get_template_directory_uri() . '/assets/images/LOGO2.png'; ?> " alt="logo Fleurs d'oranger & chats errants" id="logo2">
 
 
                 <li><a href="#story">Histoire</a></li>

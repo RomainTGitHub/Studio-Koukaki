@@ -27,28 +27,41 @@ get_header();
         );
         $characters_query = new WP_Query($args);
         ?>
-        <article id="characters">
+        <article class="characters" id="characters">
             <h3><span>Les personnages</span></h3>
-            <div class="main-character">
+            <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <?php
-                    // Tri des posts par leur index dans le tableau
-                    usort($characters_query->posts, function ($a, $b) {
-                        return $a->menu_order - $b->menu_order;
-                    });
-
-                    // Affichage des slides dans l'ordre trié
-                    foreach ($characters_query->posts as $character) {
-                        echo '<div class="swiper-slide">';
-                        echo '<figure>';
-                        echo get_the_post_thumbnail($character->ID, 'full');
-                        echo '<figcaption>' . $character->post_title . '</figcaption>';
-                        echo '</figure>';
-                        echo '</div>';
-                    }
-                    ?>
+                    <div class="swiper-slide">
+                        <figure>
+                            <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Kawaneko.png">
+                            <figcaption>Kawaneko</figcaption>
+                        </figure>
+                    </div>
+                    <div class="swiper-slide">
+                        <figure>
+                            <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Orenjiiro-1.png">
+                            <figcaption>Orenjiiro</figcaption>
+                        </figure>
+                    </div>
+                    <div class="swiper-slide">
+                        <figure>
+                            <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Pinku-1.png">
+                            <figcaption>Pinku</figcaption>
+                        </figure>
+                    </div>
+                    <div class="swiper-slide">
+                        <figure>
+                            <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Tenshi-1.png">
+                            <figcaption>Tenshi</figcaption>
+                        </figure>
+                    </div>
+                    <div class="swiper-slide">
+                        <figure>
+                            <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/Jaakuna-1.png">
+                            <figcaption>Jaakuna</figcaption>
+                        </figure>
+                    </div>
                 </div>
-            </div>
         </article>
         <article id="place">
             <div>
@@ -75,8 +88,11 @@ get_header();
     <!-- Section à supprimer lorsque l'evenement sera terminé! -->
 
     <section class="oscars" id="oscars">
-        <h3><span>Fleurs d’oranger & chats errants est nominé aux Oscars Short Film Animated de 2022 !</span></h3>
-        <img src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars.png">
+        <div class="title-container">
+            <img class="background-oscars" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars_bg.png">
+            <h3><span>Fleurs d’oranger & chats errants est nominé aux Oscars Short Film Animated de 2022 !</span></h3>
+        </div>
+        <img class="oscars-img" src="http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/oscars.png">
     </section>
 
     <!-- Fin de la section à supprimer -->

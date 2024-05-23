@@ -44,13 +44,10 @@ window.addEventListener('scroll', function () {
 
 // Configuration du swiper pour les personnages principaux
 document.addEventListener('DOMContentLoaded', function () {
-    var swiper = new Swiper('.main-character', {
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
         loop: true,
-        loopedSlides: 2,
-        spaceBetween: 20,
     });
 });
 
@@ -113,33 +110,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Animation pour les éléments nuages lorsqu'ils apparaissent dans la vue
-document.addEventListener('DOMContentLoaded', function () {
-    const nuages = document.querySelectorAll('.nuage');
+// Animation des nuages
 
-    const optionsForNuages = {
-        root: null, // Utilise la fenêtre comme zone d'affichage
-        rootMargin: '0px', // Pas de marge supplémentaire
-        threshold: 0.5 // Déclenche lorsque 50% de l'élément est visible
-    };
+document.addEventListener('DOMContentLoaded', () => {
+    const nuage1 = document.getElementById('nuage1');
+    const nuage2 = document.getElementById('nuage2');
+    const maxDistance = 300;
 
-    const observerForNuages = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                nuages.forEach(nuage => {
-                    const animationDuration = (entry.intersectionRatio * nuage.offsetWidth) / 50; // Calcul de la durée de l'animation en secondes
-                    nuage.style.transitionDuration = animationDuration + 's'; // Appliquer la durée de l'animation
-                    nuage.classList.add('move-left');
+    // Fonction pour vérifier si la section #place est visible
+    function isPlaceVisible() {
+        const placeSection = document.getElementById('place');
+        const rect = placeSection.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+        );
+    }
 
-                    setTimeout(() => {
-                        nuage.style.transitionDuration = '';
-                    }, animationDuration * 1000); // Réinitialiser la durée de transition après l'animation
-                });
-            }
-        });
-    }, optionsForNuages);
+    // Gestionnaire d'événement pour le défilement de la page
+    window.addEventListener('scroll', function () {
+        // Vérifier si la section #place est visible
+        if (isPlaceVisible()) {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const placeSection = document.getElementById('place');
+            const rect = placeSection.getBoundingClientRect();
 
-    nuages.forEach(nuage => {
-        observerForNuages.observe(nuage);
+            // Calcule la progression du scroll par rapport à la section visible
+            const sectionHeight = placeSection.offsetHeight;
+            const scrollProgress = (scrollTop - rect.top + window.innerHeight) / (sectionHeight + window.innerHeight);
+
+            // Limite la progression entre 0 et 1
+            const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
+
+            // Calculer la translation en fonction de la progression du défilement
+            const movement = clampedProgress * maxDistance;
+
+            // Appliquer la translation aux nuages
+            nuage1.style.transform = `translateX(-${movement}px)`;
+            nuage2.style.transform = `translateX(-${movement}px)`;
+        }
     });
 });
