@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
         slidesPerView: 3,
         spaceBetween: 30,
         loop: true,
+        speed: 600, // Ajustez la vitesse de transition
+        effect: 'slide', // Utilisez 'slide' pour des transitions fluides
+        loopAdditionalSlides: 10, // Aide à rendre les boucles plus fluides
     });
 });
 
@@ -113,41 +116,50 @@ document.addEventListener('DOMContentLoaded', function () {
 // Animation des nuages
 
 document.addEventListener('DOMContentLoaded', () => {
+    const placeSection = document.getElementById('place');
     const nuage1 = document.getElementById('nuage1');
     const nuage2 = document.getElementById('nuage2');
-    const maxDistance = 300;
+    let lastScrollY = window.scrollY;
 
-    // Fonction pour vérifier si la section #place est visible
-    function isPlaceVisible() {
-        const placeSection = document.getElementById('place');
-        const rect = placeSection.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        );
-    }
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
 
-    // Gestionnaire d'événement pour le défilement de la page
-    window.addEventListener('scroll', function () {
-        // Vérifier si la section #place est visible
-        if (isPlaceVisible()) {
-            const scrollTop = window.scrollY || document.documentElement.scrollTop;
-            const placeSection = document.getElementById('place');
-            const rect = placeSection.getBoundingClientRect();
-
-            // Calcule la progression du scroll par rapport à la section visible
-            const sectionHeight = placeSection.offsetHeight;
-            const scrollProgress = (scrollTop - rect.top + window.innerHeight) / (sectionHeight + window.innerHeight);
-
-            // Limite la progression entre 0 et 1
-            const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
-
-            // Calculer la translation en fonction de la progression du défilement
-            const movement = clampedProgress * maxDistance;
-
-            // Appliquer la translation aux nuages
-            nuage1.style.transform = `translateX(-${movement}px)`;
-            nuage2.style.transform = `translateX(-${movement}px)`;
+    const handleScroll = () => {
+        if (!placeSection.classList.contains('in-view')) {
+            return;
         }
-    });
+
+        const currentScrollY = window.scrollY;
+        const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
+        const distance = 300; // Distance maximale de déplacement en pixels
+
+        if (scrollDirection === 'down') {
+            nuage1.style.transform = `translateX(${-distance}px)`;
+            nuage2.style.transform = `translateX(${-distance}px)`;
+        } else {
+            nuage1.style.transform = `translateX(${distance}px)`;
+            nuage2.style.transform = `translateX(${distance}px)`;
+        }
+
+        lastScrollY = currentScrollY;
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                placeSection.classList.add('in-view');
+            } else {
+                placeSection.classList.remove('in-view');
+                // Reset the position of clouds when section is not visible
+                nuage1.style.transform = `translateX(0)`;
+                nuage2.style.transform = `translateX(0)`;
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(placeSection);
+    window.addEventListener('scroll', handleScroll);
 });
