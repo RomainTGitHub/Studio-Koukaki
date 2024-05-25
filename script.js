@@ -47,10 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 30,
-        loop: true,
-        speed: 600, // Ajustez la vitesse de transition
-        effect: 'slide', // Utilisez 'slide' pour des transitions fluides
-        loopAdditionalSlides: 10, // Aide à rendre les boucles plus fluides
+        loop: false,
     });
 });
 

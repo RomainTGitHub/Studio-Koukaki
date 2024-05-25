@@ -111,7 +111,7 @@ section.fade-in {
     overflow: hidden;
     height: 100vh;
     width: 100%;
-    margin-top: 72px;
+    margin-top: -1px;
 }
 
 /* Styles pour l'effet de parallaxe */
@@ -195,7 +195,7 @@ section.fade-in {
 .swiper-container {
     width: 2000px;
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
     /* Ajouté pour éviter le débordement */
     margin: 0 auto;
     /* Centre le conteneur si nécessaire */
@@ -246,45 +246,6 @@ section.fade-in {
     /* Ajouté pour espacer le titre des slides */
 }
 
-
-/* Styles pour le bouton de menu hamburger */
-.menu-toggle {
-    display: block;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    cursor: pointer;
-    background: none;
-    border: none;
-    z-index: 10000;
-    /* Assurez-vous que le bouton hamburger est au-dessus du contenu */
-    margin-top: 30px;
-    margin-right: 200px;
-}
-
-/* Styles pour les lignes du bouton hamburger */
-.line {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #000;
-    margin-bottom: 5px;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Transformation en croix lorsque la classe 'cross' est présente sur le bouton hamburger */
-.menu-toggle.cross .line:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.menu-toggle.cross .line:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.cross .line:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
 
 /* Styles pour le menu plein écran */
 #fullscreen-menu {
@@ -466,13 +427,56 @@ section.fade-in {
 }
 
 /* Styles pour l'en-tête du site */
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
+header {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    background-color: #FFD5A2;
+}
+
+header a {
+    color: 'black';
+    font-size: 21.48px;
+    font-family: 'Quicksand';
+    font-weight: 700;
+    word-wrap: break-word;
     margin-top: 25px;
-    width: 100%;
-    z-index: 1000;
+    margin-left: 50px;
+}
+
+/* Styles pour le bouton de menu hamburger */
+.menu-toggle {
+    display: block;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 10000;
+    /* Assurez-vous que le bouton hamburger est au-dessus du contenu */
+    margin-right: 50px;
+}
+
+/* Styles pour les lignes du bouton hamburger */
+.line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Transformation en croix lorsque la classe 'cross' est présente sur le bouton hamburger */
+.menu-toggle.cross .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.cross .line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.cross .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Styles pour le logo secondaire */
@@ -573,5 +577,23 @@ h3 span.animate {
 @media (max-width: 600px) {
     .title-container h3 {
         font-size: 0.5em;
+    }
+}
+
+@media (max-width: 1100px) {
+
+    /* Place your CSS rules here */
+    #oscars {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+
+    ::before {
+        display: none;
+    }
+
+    ::after {
+        display: none;
     }
 }
