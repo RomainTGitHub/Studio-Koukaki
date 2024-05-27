@@ -578,6 +578,12 @@ h3 span.animate {
     .title-container h3 {
         font-size: 0.5em;
     }
+
+    video {
+        display: none;
+    }
+
+
 }
 
 @media (max-width: 1100px) {
@@ -589,11 +595,33 @@ h3 span.animate {
         margin-top: 50px;
     }
 
-    ::before {
+    #oscars h3 {
+        font-size: 30px;
+        max-width: 550px;
+    }
+
+    #oscars ::before {
         display: none;
     }
 
     ::after {
         display: none;
     }
+
+    .cat1fullscreenmenu {
+        display: none;
+    }
+
+    .cat2fullscreenmenu {
+        display: none;
+    }
+
+    .cat3fullscreenmenu {
+        display: none;
+    }
+
+    #fullscreen-menu.open a {
+        font-size: 40px;
+    }
+
 }

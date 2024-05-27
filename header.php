@@ -22,7 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <link rel="profile" href="https://gmpg.org/xfn/11">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/main.css">
     <script src="script.js"></script>
 
     <?php wp_head(); ?>
