@@ -1,3 +1,4 @@
+// Animation fade in des sections
 // Lorsque le contenu du DOM est complètement chargé, exécutez la fonction principale
 document.addEventListener('DOMContentLoaded', function () {
     // Animation de fade-in pour les sections lorsqu'elles sont en vue
@@ -45,9 +46,18 @@ window.addEventListener('scroll', function () {
 // Configuration du swiper pour les personnages principaux
 document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-        spaceBetween: 30,
+        effect: 'coverflow',
+        grabCursor: true,
+        slidesPerView: 2,
+        spaceBetween: 70,
         loop: false,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: false,
+        },
     });
 });
 

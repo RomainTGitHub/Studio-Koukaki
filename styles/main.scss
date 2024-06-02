@@ -454,3 +454,9 @@ header {
 button {
     cursor: pointer;
 }
+
+@media screen and (min-width: 700px) {
+    .menu-toggle {
+        display: block !important;
+    }
+}

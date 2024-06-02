@@ -72,7 +72,7 @@ section.fade-in {
 .oscars::after {
     content: url(http://studio-koukaki.local/wp-content/themes/foce-child/media_koukaki/orchid.png);
     margin-bottom: 300px;
-    margin-left: 200px;
+    margin-right: 200px;
     animation: rotate 20s linear infinite !important;
 }
 
@@ -195,15 +195,17 @@ section.fade-in {
 .swiper-container {
     width: 2000px;
     height: 100%;
-    overflow: visible;
+    overflow: hidden;
     /* Ajouté pour éviter le débordement */
     margin: 0 auto;
     /* Centre le conteneur si nécessaire */
+    overflow: hidden;
+    /* Cache tout dépassement global */
 }
 
 .swiper-wrapper {
     display: flex;
-    width: 100%;
+    width: 130%;
     /* Ajouté pour s'assurer que le wrapper n'est pas trop large */
 }
 
@@ -221,16 +223,16 @@ section.fade-in {
     display: block;
     width: 100%;
     height: auto;
-    object-fit: cover;
 }
 
 /* Styles pour la section des personnages */
 #characters {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     width: 100%;
     /* Ajouté pour s'assurer que le conteneur ne déborde pas */
+    overflow: hidden;
 }
 
 #characters h3 {
@@ -427,33 +429,38 @@ section.fade-in {
 }
 
 /* Styles pour l'en-tête du site */
+
 header {
     display: flex;
-    flex-direction: row;
-    text-align: center;
+    justify-content: center;
     align-items: center;
     background-color: #FFD5A2;
+    position: relative;
+    padding: 10px;
+    /* Ajoute du padding pour éviter que le contenu ne soit trop proche des bords */
 }
 
-header a {
-    color: 'black';
+.site-title {
+    color: black;
     font-size: 21.48px;
     font-family: 'Quicksand';
     font-weight: 700;
-    word-wrap: break-word;
-    margin-top: 25px;
-    margin-left: 50px;
+    margin: 0 auto;
+    text-decoration: none;
 }
 
 /* Styles pour le bouton de menu hamburger */
 .menu-toggle {
-    display: block;
+    position: absolute;
+    right: 20px;
+    /* Ajoutez un peu de marge à droite */
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
     background: none;
     border: none;
     z-index: 10000;
     /* Assurez-vous que le bouton hamburger est au-dessus du contenu */
-    margin-right: 50px;
 }
 
 /* Styles pour les lignes du bouton hamburger */
@@ -576,17 +583,50 @@ h3 span.animate {
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .title-container h3 {
-        font-size: 0.5em;
+        font-size: 1.4em !important;
+        width: 400px;
+        max-width: 400px !important;
     }
 
     video {
         display: none;
     }
 
+    .title-container {
+        width: 100%;
+    }
+
+    .site-title {
+        width: 300px;
+    }
 
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 600px) {
+    .title-container h3 {
+        font-size: 1.4em !important;
+        width: 400px;
+        max-width: 300px !important;
+    }
+
+    video {
+        display: none;
+    }
+
+    .title-container {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 440px) {
+
+    video {
+        display: none;
+    }
+}
+
+@media (max-width: 1400px) {
 
     /* Place your CSS rules here */
     #oscars {
@@ -624,4 +664,10 @@ h3 span.animate {
         font-size: 40px;
     }
 
+}
+
+@media screen and (min-width: 700px) {
+    .menu-toggle {
+        display: block !important;
+    }
 }
